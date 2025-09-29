@@ -11,13 +11,18 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest --runInBand --watchAll --no-cache"
   },
   "jest": {
-    "preset": "ts-jest",
+    "transform": {
+      "^.+\\.(t|j)sx?$": "@swc/jest"
+    },
     "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "setupFilesAfterEnv": [
-      "/src/test/setup.ts"
+      "./src/test/setup.ts"
     ]
   },
   "dependencies": {
@@ -26,6 +31,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@swc/core": "1.13.5",
+    "@swc/jest": "^0.2.39",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.5.2",
@@ -41,7 +48,6 @@
     "mongodb-memory-server": "^10.2.1",
     "prettier": "^3.6.2",
     "supertest": "^7.1.4",
-    "ts-jest": "^29.4.4",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.1"
