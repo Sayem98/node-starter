@@ -1,9 +1,7 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import { setupApiRoutes } from "./routes";
 
 const app = express();
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello from Express + TypeScript!");
-});
+setupApiRoutes(app);
 
 export { app };
